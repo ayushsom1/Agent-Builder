@@ -344,3 +344,82 @@
   border-radius: var(--radius-full);
   box-shadow: var(--shadow-sm);
 }
+
+/* ===========================================
+   Resize Handle Component
+   =========================================== */
+
+.resize-handle {
+  width: 1px;
+  cursor: col-resize;
+  background: var(--color-border);
+  transition: background 150ms var(--ease-out), width 150ms var(--ease-out);
+  position: relative;
+  z-index: 10;
+  flex-shrink: 0;
+  border: none;
+}
+
+.resize-handle:hover {
+  width: 5px;
+  background: rgba(139, 92, 246, 0.5); /* Purple with 50% opacity */
+}
+
+.resize-handle:active,
+.resize-handle.dragging {
+  width: 5px;
+  background: rgba(139, 92, 246, 0.8); /* Purple with 80% opacity */
+}
+
+.resize-handle:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Visual grip indicator on hover */
+.resize-handle::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px;
+  height: 80px;
+  background: rgba(139, 92, 246, 0.15);
+  border-radius: 6px;
+  opacity: 0;
+  transition: opacity 150ms var(--ease-out);
+  pointer-events: none;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.resize-handle:hover::before,
+.resize-handle:focus::before {
+  opacity: 1;
+}
+
+.resize-handle.dragging::before {
+  opacity: 1;
+  background: rgba(139, 92, 246, 0.25);
+  border-color: rgba(139, 92, 246, 0.5);
+}
+
+/* Performance optimization during drag */
+.resize-handle.dragging ~ * {
+  will-change: width;
+  pointer-events: none; /* Prevent hover states during drag */
+}
+
+/* Disable transitions on panels while resizing for smooth dragging */
+body.is-resizing * {
+  transition: none !important;
+}
+
+/* Re-enable specific transitions we want to keep */
+body.is-resizing .resize-handle {
+  transition: background 150ms var(--ease-out), width 150ms var(--ease-out) !important;
+}
+
+body.is-resizing .resize-handle::before {
+  transition: opacity 150ms var(--ease-out) !important;
+}

@@ -57,7 +57,8 @@ def health():
         "timestamp": datetime.utcnow().isoformat(),
         "uptime_seconds": round(uptime, 2),
         "version": "1.0.0",
-        "service": "agent-builder-backend"
+        "service": "prossima-ai-backend",
+        "company": "Prossimagen Technologies"
     }), 200
 
 @health_bp.route('/health/live', methods=['GET'])
@@ -134,7 +135,8 @@ def detailed_health():
         "status": "healthy" if all([db_status, redis_status, tframex_status]) else "degraded",
         "timestamp": datetime.utcnow().isoformat(),
         "version": "1.0.0",
-        "service": "agent-builder-backend",
+        "service": "prossima-ai-backend",
+        "company": "Prossimagen Technologies",
         "uptime": {
             "seconds": round(uptime, 2),
             "human_readable": f"{int(uptime // 3600)}h {int((uptime % 3600) // 60)}m {int(uptime % 60)}s"

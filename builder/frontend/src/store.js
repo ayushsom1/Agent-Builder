@@ -72,6 +72,34 @@ export const useStore = create((set, get) => ({
 
   setSelectedNodeId: (nodeId) => set({ selectedNodeId: nodeId }),
 
+  // === Panel Resize State ===
+  panelWidths: loadState('panelWidths') || {
+    sidebar: 320,
+    terminal: 500,
+  },
+
+  setSidebarWidth: (width) => {
+    const constrained = Math.max(200, Math.min(600, width));
+    set((state) => ({
+      panelWidths: { ...state.panelWidths, sidebar: constrained }
+    }));
+    saveState('panelWidths', get().panelWidths);
+  },
+
+  setTerminalWidth: (width) => {
+    const constrained = Math.max(300, Math.min(800, width));
+    set((state) => ({
+      panelWidths: { ...state.panelWidths, terminal: constrained }
+    }));
+    saveState('panelWidths', get().panelWidths);
+  },
+
+  resetPanelWidths: () => {
+    const defaults = { sidebar: 320, terminal: 500 };
+    set({ panelWidths: defaults });
+    saveState('panelWidths', defaults);
+  },
+
   onNodesChange: (changes) => {
     set((state) => ({ nodes: applyNodeChanges(changes, state.nodes) }));
     get().setAutoSaveStatus('saving');

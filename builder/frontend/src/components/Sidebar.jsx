@@ -25,20 +25,20 @@ const Sidebar = () => {
 
   return (
     <TooltipProvider>
-      <aside className="w-80 flex flex-col bg-sidebar border-r border-sidebar-border h-full">
+      <aside className="flex flex-col bg-sidebar h-full">
         <div className="h-14 px-4 border-b border-sidebar-border flex items-center flex-shrink-0">
           <div className="flex items-center space-x-3">
             <img
-              src="/Tesslate.svg"
-              alt="Tesslate"
+              src="/Prossima.svg"
+              alt="Prossima AI"
               className="h-6 w-auto"
             />
             <div>
               <h2 className="text-sm font-semibold text-sidebar-foreground leading-none">
-                Tesslate Agent Builder
+                Prossima AI
               </h2>
               <p className="text-xs text-muted-foreground mt-0.5">
-                Powered by TFrameX v1.1.0
+                by Prossimagen Technologies
               </p>
             </div>
           </div>

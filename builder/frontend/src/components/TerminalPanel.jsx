@@ -17,7 +17,7 @@ const TerminalPanel = () => {
   const sendChatMessageToFlowBuilder = useStore((state) => state.sendChatMessageToFlowBuilder);
   
   const [messages, setMessages] = useState([
-    { type: 'system', content: 'Welcome to Tesslate Agent Builder Terminal', timestamp: new Date() }
+    { type: 'system', content: 'Welcome to Prossima AI Agent Builder Terminal', timestamp: new Date() }
   ]);
 
   useEffect(() => {

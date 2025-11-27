@@ -26,6 +26,7 @@ import ModelConfigurationPanel from './ModelConfigurationPanel';
 import UserProfile from './auth/UserProfile';
 import ExportDialog from './ExportDialog';
 import ImportDialog from './ImportDialog';
+import ThemeToggle from './ThemeToggle';
 
 // Reusable tooltip button component
 const TooltipButton = ({ tooltip, children, ...props }) => (
@@ -217,7 +218,9 @@ const TopBar = () => {
       {/* Right Side: Action Buttons */}
       <div className="flex items-center space-x-2">
         <ModelConfigurationPanel />
-        
+
+        <ThemeToggle />
+
         <ImportDialog />
         <ExportDialog />
 

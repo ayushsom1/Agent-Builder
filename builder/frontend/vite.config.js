@@ -18,6 +18,6 @@ export default defineConfig({
     hmr: {
       host: "localhost",
     },
-    allowedHosts: ["localhost", "127.0.0.1", "studio.tesslate.com"],
+    allowedHosts: ["localhost", "127.0.0.1", "studio.prossima.ai"],
   },
 })

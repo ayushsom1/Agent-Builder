@@ -65,18 +65,18 @@ export function LoginPage() {
         <div className="text-center">
           <div className="flex items-center justify-center space-x-3 mb-4">
             <img
-              src="/Tesslate.svg"
-              alt="Tesslate"
+              src="/Prossima.svg"
+              alt="Prossima AI"
               className="h-8 w-auto"
             />
             <div>
               <h1 className="text-2xl font-semibold text-foreground">
-                Tesslate Agent Builder
+                Prossima AI
               </h1>
             </div>
           </div>
           <p className="text-muted-foreground text-sm">
-            Visual Flow Builder for TFrameX v1.1.0
+            Enterprise Visual Agent Builder | Prossimagen Technologies
           </p>
         </div>
 

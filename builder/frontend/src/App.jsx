@@ -20,6 +20,7 @@ import TerminalPanel from './components/TerminalPanel';
 import PropertiesPanel from './components/PropertiesPanel';
 import NavigationControls from './components/NavigationControls';
 import LoginPage from './components/auth/LoginPage';
+import ResizeHandle from './components/ResizeHandle';
 import TextInputNode from './nodes/inputs/TextInputNode'; // New
 
 import TFrameXAgentNode from './nodes/tframex/TFrameXAgentNode';
@@ -70,6 +71,20 @@ const FlowEditor = () => {
   const saveCurrentProject = useStore((state) => state.saveCurrentProject);
   const projects = useStore((state) => state.projects);
   const currentProjectId = useStore((state) => state.currentProjectId);
+
+  // Panel width state for resizing
+  const sidebarWidth = useStore((state) => state.panelWidths.sidebar);
+  const terminalWidth = useStore((state) => state.panelWidths.terminal);
+  const setSidebarWidth = useStore((state) => state.setSidebarWidth);
+  const setTerminalWidth = useStore((state) => state.setTerminalWidth);
+
+  const handleSidebarResize = useCallback((delta) => {
+    setSidebarWidth(sidebarWidth + delta);
+  }, [sidebarWidth, setSidebarWidth]);
+
+  const handleTerminalResize = useCallback((delta) => {
+    setTerminalWidth(terminalWidth + delta);
+  }, [terminalWidth, setTerminalWidth]);
 
   // Debounced save to prevent interference with dragging
   const debouncedSaveProject = useMemo(
@@ -238,8 +253,25 @@ const FlowEditor = () => {
 
   return (
     <div className="flex h-screen w-screen bg-sidebar text-foreground">
-      <Sidebar />
-      <div className="flex-grow flex flex-col h-full" ref={reactFlowWrapper}>
+      {/* Left Sidebar - Resizable */}
+      <div
+        style={{ width: `${sidebarWidth}px` }}
+        className="flex-shrink-0 transition-[width] duration-150 ease-out"
+      >
+        <Sidebar />
+      </div>
+
+      {/* Resize Handle - Left */}
+      <ResizeHandle
+        side="left"
+        onResize={handleSidebarResize}
+        currentWidth={sidebarWidth}
+        minWidth={200}
+        maxWidth={600}
+      />
+
+      {/* Center Canvas Area */}
+      <div className="flex-grow flex flex-col h-full min-w-[400px]" ref={reactFlowWrapper}>
         <TopBar />
         <div className="flex-grow relative overflow-hidden">
           <ReactFlow
@@ -304,8 +336,21 @@ const FlowEditor = () => {
           )}
         </div>
       </div>
-      {/* Right Terminal Panel */}
-      <div className="w-[500px] flex flex-col border-l border-sidebar-border h-full bg-sidebar">
+
+      {/* Resize Handle - Right */}
+      <ResizeHandle
+        side="right"
+        onResize={handleTerminalResize}
+        currentWidth={terminalWidth}
+        minWidth={300}
+        maxWidth={800}
+      />
+
+      {/* Right Terminal Panel - Resizable */}
+      <div
+        style={{ width: `${terminalWidth}px` }}
+        className="flex-shrink-0 flex flex-col border-l border-sidebar-border h-full bg-sidebar transition-[width] duration-150 ease-out"
+      >
         <TerminalPanel />
       </div>
     </div>

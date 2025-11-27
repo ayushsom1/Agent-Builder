@@ -3,11 +3,11 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "agent-builder"
+name = "prossima-ai"
 version = "1.0.0"
-description = "Visual agent builder for TFrameX - Create sophisticated LLM agents and workflows"
+description = "Prossima AI - Enterprise visual agent builder platform for creating sophisticated LLM agents and workflows"
 authors = [
-    { name = "TesslateAI", email = "contact@tesslate.com" }
+    { name = "Prossimagen Technologies", email = "contact@prossimagen.com" }
 ]
 dependencies = [
     "tframex==1.1.0",
@@ -46,10 +46,10 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/TesslateAI/Agent-Builder"
-Documentation = "https://github.com/TesslateAI/Agent-Builder/wiki"
-Repository = "https://github.com/TesslateAI/Agent-Builder"
-Issues = "https://github.com/TesslateAI/Agent-Builder/issues"
+Homepage = "https://github.com/ayushsom1/Agent-Builder"
+Documentation = "https://github.com/ayushsom1/Agent-Builder/wiki"
+Repository = "https://github.com/ayushsom1/Agent-Builder"
+Issues = "https://github.com/ayushsom1/Agent-Builder/issues"
 
 [tool.setuptools.packages.find]
 where = ["builder"]
